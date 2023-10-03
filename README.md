@@ -1,2 +1,2 @@
 # k8sOperator
-this repo contains code to create a github operator
+This repo contains code to create a github operator using GoLang SDK.
