@@ -14,6 +14,12 @@ Initialise Go
 Initialise kubebuilder
  - kubebuilder init --domain sagar.com  `if you are creating the controller in the directory other then ~/go/src then please define repo path to you current working directory --repo github.com/sagar0419/k8sOperator`
 
+This command generates Kubernetes manifests (YAML files) for custom resources (CRDs), RBAC roles, and other resources defined in your operator. These generated manifests are usually stored in the config/crds/ and config/rbac/ directories.
+ - make manifests
+
+This command generates Go code based on the custom resource definitions (CRDs) in your project. It generates client code, informers, listers, and other code needed for interacting with your custom resources.
+ - make generate
+
 Now make changes in the code as all the files  are initialise. Once that is done follow these commands :-
 #### To run operator
 - make install run
