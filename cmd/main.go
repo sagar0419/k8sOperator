@@ -91,6 +91,7 @@ func main() {
 
 	if err = (&controller.DemoReconciler{
 		Client: mgr.GetClient(),
+		Log:    ctrl.Log.WithName("Controllers").WithName("Demo"),
 		Scheme: mgr.GetScheme(),
 	}).SetupWithManager(mgr); err != nil {
 		setupLog.Error(err, "unable to create controller", "controller", "Demo")

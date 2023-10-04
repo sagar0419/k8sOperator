@@ -21,6 +21,7 @@ spec:
   size: 3
   service:
     name: http
+    namespace: default
     protocol: TCP
     port: 8080
     targetPort: 8080

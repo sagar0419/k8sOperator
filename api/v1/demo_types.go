@@ -14,17 +14,21 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+// package v1 line refers to the package name in which the API type of this version of the custom resource are defined.
 package v1
 
+// package that are required to work with kubernetes API
 import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
 // EDIT THIS FILE!  THIS IS SCAFFOLDING FOR YOU TO OWN!
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
+
+// This spec struct is used to define the specification or desired state of the resource
 type ServiceSpec struct {
 	Name       string `json:"name"`
-	Namespace  string `json:"nameSpace"`
+	Namespace  string `json:"namespace"`
 	Protocol   string `json:"protocol"`
 	Port       int32  `json:"port"`
 	TargetPort int32  `json:"targetPort"`
@@ -51,10 +55,11 @@ type DemoSpec struct {
 	Service                ServiceSpec `json:"service"`
 }
 
-// DemoStatus defines the observed state of Demo
+// DemoStatus defines the observed state/status of Demo
 type DemoStatus struct {
 	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
+	PodList []string `json:"podList"`
 }
 
 //+kubebuilder:object:root=true
@@ -62,10 +67,13 @@ type DemoStatus struct {
 
 // Demo is the Schema for the demoes API
 type Demo struct {
-	metav1.TypeMeta   `json:",inline"`
+	metav1.TypeMeta `json:",inline"`
+	// metav1.ObjectMeta: This field includes metadata about the resource instance itself. It contains fields like name, namespace, labels, annotations, and more.
+	// The json:"metadata,omitempty" tag indicates that this field is represented in the JSON serialization of the custom resource as "metadata", and it's optional (the omitempty part).
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-
-	Spec   DemoSpec   `json:"spec,omitempty"`
+	// Spec: This field of type DemoSpec is used to define the specification of the custom resource.
+	Spec DemoSpec `json:"spec,omitempty"`
+	// Status: This field of type DemoStatus is used to define the status of the custom resource.
 	Status DemoStatus `json:"status,omitempty"`
 }
 

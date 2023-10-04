@@ -298,8 +298,22 @@ func (r *DemoReconciler) serviceForOperator(m *k8soperatorv1.Demo) *corev1.Servi
 }
 
 // SetupWithManager sets up the controller with the Manager.
+
+// This function is a method attached to a DemoReconciler object.
+// It's used for setting up the controller with a manager, which is responsible for managing the lifecycle of controllers and resources in a Kubernetes cluster.
 func (r *DemoReconciler) SetupWithManager(mgr ctrl.Manager) error {
+	// This line creates a new controller using the ctrl package and specifies that it should be managed by the provided manager (mgr).
+	// This controller will be responsible for reconciling resources of type k8soperatorv1.Demo.
+	// In Kubernetes operator development, reconciliation typically involves bringing the actual state of resources in the cluster in line with the desired state.
 	return ctrl.NewControllerManagedBy(mgr).
+		// This line specifies that the controller should watch for changes to resources of type k8soperatorv1.Demo.
 		For(&k8soperatorv1.Demo{}).
+
+		// this owns line specify that controller own the object of type deployment in appsv1 group and service in corev1 group.
+		Owns(&appsv1.Deployment{}).
+		Owns(&corev1.Service{}).
+
+		// Finally, the Complete method is called on the controller, and it is passed the DemoReconciler (r).
+		// This completes the setup of the controller with the provided reconciler.
 		Complete(r)
 }
