@@ -1,3 +1,44 @@
+### Steps to start building operator
+
+####Perquisite
+- GO installed
+- Kubebuilder installed
+`make sure to install samem version of kubebuilder and GoLang`
+
+Create a directory, for our example we are creating k8sOperator.
+ - mkdir k8sOperator
+
+Initialise Go
+ - go mod init k8sOperator
+
+Initialise kubebuilder
+ - kubebuilder init --domain sagar.com  `if you are creating the controller in the directory other then ~/go/src then please define repo path to you current working directory --repo github.com/sagar0419/k8sOperator`
+
+Now make changes in the code as all the files  are initialise. Once that is done follow these commands :-
+#### To run operator
+- make install run
+
+#### Now deploy the sample app 
+- cd config/samples
+- k apply -f k8soperator_v1_demo.yaml
+
+`Now you can describe the deployed app`
+
+#### To make container and store it on your dockerHub / private repository
+
+- make docker-build docker-push
+
+#### To deploy Operator as container
+- make deploy
+`Now you can see that all resources, namespaces, rbac, role-binding, service,deployment has been created in a namespace `k8soperator-system``
+
+#### To Undeploy the operator
+- make undeploy
+
+`It will remove everything from the cluster`
+
+
+### Below is the default readme created by kubebuilder. 
 # k8soperator
 // TODO(user): Add simple overview of use/purpose
 
