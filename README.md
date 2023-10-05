@@ -1,17 +1,17 @@
 ### Steps to start building operator
 
-####Perquisite
+### Perquisite
 - GO installed
 - Kubebuilder installed
 `make sure to install samem version of kubebuilder and GoLang`
 
-Create a directory, for our example we are creating k8sOperator.
+#### Create a directory, for our example we are creating k8sOperator.
  - mkdir k8sOperator
 
-Initialise Go
+#### Initialise Go
  - go mod init k8sOperator
 
-Initialise kubebuilder
+#### Initialise kubebuilder
  - kubebuilder init --domain sagar.com  `if you are creating the controller in the directory other then ~/go/src then please define repo path to you current working directory --repo github.com/sagar0419/k8sOperator`
 
 This command generates Kubernetes manifests (YAML files) for custom resources (CRDs), RBAC roles, and other resources defined in your operator. These generated manifests are usually stored in the config/crds/ and config/rbac/ directories.
